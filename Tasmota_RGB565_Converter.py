@@ -22,9 +22,9 @@ def func_converter(input_image_path, output_file_path, output_width, output_heig
     img_array = np.array(image)
     
     # Normalize and scale to RGB565
-    red   = (img_array[:, :, 0] >> 3)  # 5 bits for red (0-31)
-    green = (img_array[:, :, 1] >> 2)  # 6 bits for green (0-63)
-    blue  = (img_array[:, :, 2] >> 3)  # 5 bits for blue (0-31)
+    red   = (img_array[:, :, 0] >> 3).astype(np.uint16)  # 5 bits for red (0-31)
+    green = (img_array[:, :, 1] >> 2).astype(np.uint16)  # 6 bits for green (0-63)
+    blue  = (img_array[:, :, 2] >> 3).astype(np.uint16)  # 5 bits for blue (0-31)
     
     # Combine the channels into one RGB565 format (16-bit)
     rgb565 = (red << 11) | (green << 5) | blue
